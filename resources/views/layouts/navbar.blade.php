@@ -14,20 +14,20 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!--<li><a href="/" data-toggle="collapse" data-target=".navbar-collapse.in"><small><em>Online Now: <strong>36460</strong></em></small></a></li>-->
                         <li class="hidden-sm">
-                            <a href="{{env('APP_URL'). '/howitworks'}}" data-toggle="collapse" data-target=".navbar-collapse.in">How it Works</a>
+                            <a href="{{env('APP_URL'). '/howitworks'}}">How it Works</a>
                         </li>
                         <li>
-                            <a href="{{env('APP_URL'). '/adblog'}}" data-toggle="collapse" data-target=".navbar-collapse.in">AdBlog</a>
+                            <a href="{{env('APP_URL'). '/adblog'}}">AdBlog</a>
                         </li>
                         <li>
-                            <a href="{{env('APP_URL'). '/adboard'}}" data-toggle="collapse" data-target=".navbar-collapse.in">AdBoard</a>
+                            <a href="{{env('APP_URL'). '/adboard'}}">AdBoard</a>
                         </li>
                         @if(!isset($isLoggedIn))
                             <li>
-                                <a href="{{env('APP_URL'). '/register'}}" data-toggle="collapse" data-target=".navbar-collapse.in">Join</a>
+                                <a href="{{env('APP_URL'). '/register'}}">Join</a>
                             </li>
                             <li>
-                                <a href="{{env('APP_URL'). '/login'}}" id="login" data-toggle="collapse" data-target=".navbar-collapse.in">Login</a>
+                                <a href="{{env('APP_URL'). '/login'}}" id="login">Login</a>
                             </li>
                         @endif
                         @if(isset($isLoggedIn))

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\LasAdBoardPost;
+use App\Models\LasBlogEntries;
 use App\Models\LasCountedThing;
 use App\Models\LasCountEvent;
 
@@ -28,11 +29,24 @@ class AdBoardController extends Controller {
                                 ->where('status', 'PUBLISHED')
                                 ->join('members', 'las_ad_board_post.owner_id', 'members.id')
                                 ->orderBy('date_created', 'DESC')
-                                ->paginate(10);
+                                ->paginate(25);
 
         foreach ($posts as $key => $post) {
-            $count = LasCountedThing::where(['counted_thing_id' => $post->id, 'counted_thing_field' => 'views'])->first()->thing_count;
-            $posts[$key]->thing_count = $count;
+            $thingRecord = LasCountedThing::where(['counted_thing_id' => $post->id, 'counted_thing_field' => 'views'])->first();
+            if (isset($thingRecord)) {
+                $count = LasCountedThing::where(['counted_thing_id' => $post->id, 'counted_thing_field' => 'views'])->first()->thing_count;
+                $posts[$key]->thing_count = $count;
+            } else {
+                $posts[$key]->thing_count = 0;
+            }
+
+            if (strlen(strip_tags($posts[$key]->description)) > 200) {
+                $posts[$key]->shortDescription = substr(strip_tags($posts[$key]->description), 0, 200) . '...';
+            } else {
+                $posts[$key]->shortDescription = strip_tags($posts[$key]->description);
+            }
+
+            $posts[$key]->description = strip_tags($posts[$key]->description);
         }
 
         // get posts list and count for today, last 7 days and last 30 days
@@ -48,8 +62,7 @@ class AdBoardController extends Controller {
         $weekViewsCount = LasCountEvent::whereDate('date_created', '>=', Carbon::today()->subDays(7))->where('counted_thing_entity', 'AdBoardPost')->where('counted_thing_field', 'views')->get()->count();
         $monthViewsCount = LasCountEvent::whereDate('date_created', '>=', Carbon::today()->subDays(30))->where('counted_thing_entity', 'AdBoardPost')->where('counted_thing_field', 'views')->get()->count();
 
-        $lastTenPosts = LasAdBoardPost::with('count')->where('status', 'PUBLISHED')->orderBy('date_created', 'DESC')->take(10)->get();
-
+        $lastTenPosts = LasBlogEntries::where('status', 'PUBLISHED')->orderBy('las_blog_entry.date_created', 'DESC')->join('las_counted_thing', 'las_counted_thing.counted_thing_id', 'las_blog_entry.id')->take(10)->get();
         foreach($lastTenPosts as $key => $post) {
             $timestamp = strtotime($post->date_created);
 

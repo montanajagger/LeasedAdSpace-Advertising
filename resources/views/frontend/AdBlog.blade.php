@@ -47,41 +47,133 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                @foreach($blogs as $blog)
-                    <div class="row">
-                        <div class="col-sm-2">
-                            <div class="gutter-ad-txt">
-                                <a href="https://www.leasedadspace.com/ad/visitTextLink/42312" target="_blank" class="text-center">
-                                    <div class="title">Expert Secrets</div>
-                                    <!-- #{title}-->
-                                    <div>Free Book On</div>
-                                    <!-- #{line1}-->
-                                    <div>Creating Mass Movement</div>
-                                    <!-- #{line2}-->
-                                    <div class="title">Get Your Free Copy Now</div>
-                                </a>
+                @foreach($blogs as $key => $blog)
+                    @if ($key < 3)
+                        <div class="row">
+                            <div class="col-sm-2">
+                                @if (isset($smallTexts[$key]))
+                                    <div class="gutter-ad-txt">
+                                        <a href="{{ $smallTexts[$key]->link }}" target="_blank" class="text-center keychainify-checked steem-keychain-checked">
+                                            <div class="title">{{ $smallTexts[$key]->title }}</div>
+                                            <!-- #{title}-->
+                                            <div>{{ $smallTexts[$key]->line_one }}</div>
+                                            <!-- #{line1}-->
+                                            <div>{{ $smallTexts[$key]->line_two }}</div>
+                                            <!-- #{line2}-->
+                                            <div class="title">{{ $smallTexts[$key]->call_to_action }}</div>
+                                        </a>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="col-sm-10" style="background-color:#FCFCFC;margin-top:1em;padding-top:1em;border:1px #DEDEDE solid">
+                                <h3 style="margin-top:0;">
+                                    <a href="https://leasedadspace.com/adBlog/1489916/1-year-onlinemissed-leased-ad-space-launch" class="keychainify-checked steem-keychain-checked">
+                                        {{ $blog->subject }}
+                                    </a>
+                                </h3>
+                                <p style="margin:0px" class="small">
+                                    Posted on 9-10-2020 at 12:28 AM by
+                                    <a href="https://leasedadspace.com/members/maparecida" class="keychainify-checked steem-keychain-checked">
+                                        {{ isset($blog->author) == true ? $blog->author->emailuser : '' }}
+                                    </a>
+                                </p>
+                                <hr style="margin-top:.25em;margin-bottom:.25em;">
+                                <div>
+                                    {!! $blog->body !!}
+                                    (<a href="https://leasedadspace.com/adBlog/1489905/ether-chain-smart-contracts--310-roi" class="keychainify-checked steem-keychain-checked">more →</a>)
+                                </div>
+                                <br>
+                                <div>
+                                    <p>Check out this offer, or
+                                        <a href="https://leasedadspace.com/soloEmail/preVisit/1489916" target="_blank" id="clickLogin" class="keychainify-checked steem-keychain-checked">
+                                            LOGIN
+                                        </a>
+                                        first to get click credits for your browsing!:
+                                        <br>
+                                        =&gt;
+                                        <a href="https://www.trafficprofit.me/page/landing/1/Trafficprofitme" target="_blank" class="keychainify-checked steem-keychain-checked">
+                                            https://www.trafficprofit.me/page/landing/1/Trafficprofitme
+                                        </a>
+                                    </p>
+                                </div>
+                                <br>
                             </div>
                         </div>
-                        <div class="col-sm-10" style="background-color:#FCFCFC;margin-top:1em;padding-top:1em;border:1px #DEDEDE solid">
-                            <h3 style="margin-top:0;">
-                                <a href="https://www.leasedadspace.com/adBlog/{{ $blog->id  }}/{{ $blog->title }}">
-                                    {{ $blog->title }}
-                                </a>
-                            </h3>
-                            {!! $blog->body !!}
+                    @endif
+                @endforeach
+                <div class="row" style="margin-bottom:3em;">
+                    @foreach($middleBanners as $banner)
+                        <div class="col-md-6 bottom-banner">
+                            <a href="{{ $banner->destination_url }}" target="_blank" class="keychainify-checked steem-keychain-checked">
+                                <img src="{{ $banner->banner_url }}" class="img-responsive center-block fourSixtyEightImage">
+                            </a>
                         </div>
-                    </div>
+                    @endforeach
+                </div>
+                @foreach($blogs as $key => $blog)
+                    @if ($key > 2)
+                        <div class="row">
+                            <div class="col-sm-2">
+                                @if (isset($smallTexts[$key]))
+                                    <div class="gutter-ad-txt">
+                                        <a href="{{ $smallTexts[$key]->link }}" target="_blank" class="text-center keychainify-checked steem-keychain-checked">
+                                            <div class="title">{{ $smallTexts[$key]->title }}</div>
+                                            <!-- #{title}-->
+                                            <div>{{ $smallTexts[$key]->line_one }}</div>
+                                            <!-- #{line1}-->
+                                            <div>{{ $smallTexts[$key]->line_two }}</div>
+                                            <!-- #{line2}-->
+                                            <div class="title">{{ $smallTexts[$key]->call_to_action }}</div>
+                                        </a>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="col-sm-10" style="background-color:#FCFCFC;margin-top:1em;padding-top:1em;border:1px #DEDEDE solid">
+                                <h3 style="margin-top:0;">
+                                    <a href="https://leasedadspace.com/adBlog/1489916/1-year-onlinemissed-leased-ad-space-launch" class="keychainify-checked steem-keychain-checked">
+                                        {{ $blog->subject }}
+                                    </a>
+                                </h3>
+                                <p style="margin:0px" class="small">
+                                    Posted on 9-10-2020 at 12:28 AM by
+                                    <a href="https://leasedadspace.com/members/maparecida" class="keychainify-checked steem-keychain-checked">
+                                        {{ isset($blog->author) == true ? $blog->author->emailuser : '' }}
+                                    </a>
+                                </p>
+                                <hr style="margin-top:.25em;margin-bottom:.25em;">
+                                <div>
+                                    {!! $blog->body !!}
+                                    (<a href="https://leasedadspace.com/adBlog/1489905/ether-chain-smart-contracts--310-roi" class="keychainify-checked steem-keychain-checked">more →</a>)
+                                </div>
+                                <br>
+                                <div>
+                                    <p>Check out this offer, or
+                                        <a href="https://leasedadspace.com/soloEmail/preVisit/1489916" target="_blank" id="clickLogin" class="keychainify-checked steem-keychain-checked">
+                                            LOGIN
+                                        </a>
+                                        first to get click credits for your browsing!:
+                                        <br>
+                                        =&gt;
+                                        <a href="https://www.trafficprofit.me/page/landing/1/Trafficprofitme" target="_blank" class="keychainify-checked steem-keychain-checked">
+                                            https://www.trafficprofit.me/page/landing/1/Trafficprofitme
+                                        </a>
+                                    </p>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                    @endif
                 @endforeach
                 <!-- images on bottom of blogs -->
                 <div class="row">
                     <div class="col-md-6 bottom-banner">
                         <a href="https://www.leasedadspace.com/ad/visitBannerLink/13038" target="_blank">
-                            <img src="./Ad Blog - Leased Ad Space_files/24717.jpg" class="img-responsive  center-block fourSixtyEightImage" style="display: none !important;">
+                            <img src="./Ad Blog - Leased Ad Space_files/24717.jpg" class="center-block fourSixtyEightImage" style="display: none !important;">
                         </a>
                     </div>
                     <div class="col-md-6 bottom-banner">
                         <a href="https://www.leasedadspace.com/ad/visitBannerLink/189030" target="_blank" class="">
-                            <img src="./Ad Blog - Leased Ad Space_files/banner468x60" class="img-responsive center-block fourSixtyEightImage" style="max-height: 60px; display: none !important;">
+                            <img src="./Ad Blog - Leased Ad Space_files/banner468x60" class="center-block fourSixtyEightImage" style="max-height: 60px; display: none !important;">
                         </a>
                     </div>
                 </div>

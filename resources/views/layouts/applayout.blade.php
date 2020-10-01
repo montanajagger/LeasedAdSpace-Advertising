@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="layout" content="homepage">
 
-    <link rel="icon" href="https://www.leasedadspace.com/assets/favicon-49f7f73419797356830bc2e32e751f21.ico" type="image/x-icon" />
+    <link rel="icon" href="https://leasedadspace.com/favicon.ico" type="image/x-icon" />
 
     <link rel="stylesheet" href="{{asset('css/css.css')}}">
     <link rel="stylesheet" href="{{asset('css/bootstrap.min-3f9be4352903f3a7bce058016cf74cdc.css')}}">
@@ -22,7 +22,17 @@
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@3.1.0/js/froala_editor.pkgd.min.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     @yield('css')
+
+    <style>
+        @font-face {
+            font-family: 'Sense', sans-serif;
+            src: url('{{ public_path('assets/sense/Sense_LightItalic-webfont.eot') }}');
+        }
+    </style>
 </head>
 
 <body>

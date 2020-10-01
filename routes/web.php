@@ -25,27 +25,14 @@ Route::post('/login', function() {
     return redirect('/dashboard');
 });
 
-Route::get('/register', function() {
-    return view('frontend.Register', ['pageTitle' => 'Register']);
-});
-
-Route::get('/howitworks', function() {
-    return View('frontend.HowItWorksIndex', ['pageTitle' => 'How It Works']);
-});
-
-Route::get('/howitworks_advertisers', function() {
-    return View('frontend.HowItWorksAdvertisers', ['pageTitle' => 'Advertisers']);
-});
-
-Route::get('/howitworks_affiliate', function() {
-    return View('frontend.HowItWorksAffiliate', ['pageTitle' => 'Affiliates']);
-});
-
+Route::get('/register', function() { return view('frontend.Register', ['pageTitle' => 'Register']); });
+Route::get('/howitworks', 'App\Http\Controllers\HowItWorksController@show');
+Route::get('/howitworks_advertisers', 'App\Http\Controllers\HowItWorksController@showForAdvertising');
+Route::get('/howitworks_affiliate', 'App\Http\Controllers\HowItWorksController@showForAffiliate');
 Route::get('/adblog', 'App\Http\Controllers\AdBlogController@show');
-
 Route::get('/adboard', 'App\Http\Controllers\AdBoardController@show');
 
-Route::get('/para/info', function() {
+Route::get('/para_info', function() {
     return View('frontend.ParaAdsService', ['pageTitle' => 'ParaAds Service']);
 });
 
