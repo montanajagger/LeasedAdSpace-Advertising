@@ -103,10 +103,10 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
-				<h1>
+				<h1 style="display: inline-block">
 					<span class="hidden-xs">LAS </span>Ad Board<span class="hidden-xs"> Directory</span>
-					<small class="pull-right" style="padding-top:.5em;"><strong><a href="https://leasedadspace.com/login.php">Post Your Free Ad Now!</a></strong></small>
-				</h1>
+                </h1>
+                <small class="pull-right" style="padding-top:.5em;"><strong><a href="https://leasedadspace.com/login.php" style="font-weight: 700; font-size: 23px;">Post Your Free Ad Now!</a></strong></small>
 				<hr>
 			</div>
 		</div>
@@ -256,12 +256,13 @@
 								<span class="visible-lg visible-xs text-left">
 									<strong>{{ $post->thing_count }}</strong>
 									views — posted
-									{{ $post->ago }}
+									{!! $post->ago !!}
 								</span>
 							</p>
 							<p class="small text-center">
 								<a href="https://leasedadspace.com/members/ShaunPrice/blog/1488903/bitcoin-whale-transfers-641-million-of-btcs" target="_blank">{{ $post->title }}</a>
 							</p>
+                            <hr style="margin: 0">
 						@endforeach
 					</div>
 				</div>

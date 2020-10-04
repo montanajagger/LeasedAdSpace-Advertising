@@ -11,7 +11,7 @@
 
         <link rel="icon" href="https://leasedadspace.com/favicon.ico" type="image/x-icon" />
 
-    {{--    <link rel="stylesheet" href="{{asset('css/css.css')}}">--}}
+        <link rel="stylesheet" href="{{asset('css/css.css')}}">
     {{--    <link rel="stylesheet" href="{{asset('css/bootstrap.min-3f9be4352903f3a7bce058016cf74cdc.css')}}">--}}
         <link rel="stylesheet" href="{{asset('css/style-f95626c760ed3dccfbf299f69539089c.css')}}">
 
@@ -194,12 +194,36 @@
             }
 
             p {
-                display: inline!important;
+                /*display: inline!important;*/
             }
 
-            @font-face {
-                font-family: 'Sense', sans-serif;
-                src: url('{{ public_path('assets/sense/Sense_LightItalic-webfont.eot') }}');
+            h1, h2, h3, h4, h5, h6 {
+                font-weight: 400;
+            }
+
+            .small, small {
+                font-size: 100%;
+            }
+
+            b, strong {
+                font-weight: 600;
+            }
+
+            .navbar-brand {
+                font-size: 2.2em!important;
+            }
+
+            .navbar-brand strong {
+                font-size: 1em;
+                color: #ffffff;
+            }
+
+            a:link, a:visited {
+                color: #f21329;
+            }
+
+            header.navbar ul.nav.navbar-nav>li a {
+                font-weight: 500;
             }
         </style>
     </head>

@@ -28,10 +28,10 @@
     @yield('css')
 
     <style>
-        @font-face {
-            font-family: 'Sense', sans-serif;
-            src: url('{{ public_path('assets/sense/Sense_LightItalic-webfont.eot') }}');
-        }
+        {{--@font-face {--}}
+        {{--    font-family: 'Sense', sans-serif;--}}
+        {{--    src: url('{{ public_path('assets/sense/Sense_LightItalic-webfont.eot') }}');--}}
+        {{--}--}}
     </style>
 </head>
 

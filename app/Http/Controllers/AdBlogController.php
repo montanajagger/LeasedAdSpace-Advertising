@@ -11,21 +11,32 @@ class AdBlogController extends Controller
     public function show()
     {
         $blogs = LasSoloAd::with('author')
-                                ->where('visible', '1')
                                 ->orderBy('date_created', 'DESC')
                                 ->paginate(6);
 
         $length = 350;
         foreach ($blogs as $key => $blog) {
             if(strlen($blog->body) > $length) {
-                $blog->body = $this->truncateHtml($blog->body, $length);
+                $blog->body = $this->truncateHtml($blog->body, $length, '...(<a href="https://leasedadspace.com/adBlog/1489905/ether-chain-smart-contracts--310-roi" class="keychainify-checked steem-keychain-checked">more →</a>)');
             }
         }
 
-        $smallTexts = LasSmallTextAd::inRandomOrder()->limit(6)->get();
-        $middleBanners = LasBannerAd::inRandomOrder()->where('banner_type', 'FOUR_SIXTY_EIGHT')->limit(2)->get();
+        $smallTexts = LasSmallTextAd::inRandomOrder()->limit(3)->get();
+        $banners = LasBannerAd::inRandomOrder()->where('banner_type', 'ONE_TWENTY_FIVE')->limit(3)->get();
+        $leftBlogs = [];
+        for ($i = 0; $i < 3; $i++) {
+            array_push($leftBlogs, $smallTexts[$i]);
+            array_push($leftBlogs, $banners[$i]);
+        }
 
-        return View('frontend.AdBlog', ['pageTitle' => 'Ad Blog', 'blogs' => $blogs, 'smallTexts' => $smallTexts, 'middleBanners' => $middleBanners]);
+        $middleBanners = LasBannerAd::inRandomOrder()->where('banner_type', 'FOUR_SIXTY_EIGHT')->limit(2)->get();
+        $bottomBanners = LasBannerAd::inRandomOrder()->where('banner_type', 'FOUR_SIXTY_EIGHT')->limit(2)->get();
+
+        return View('frontend.AdBlog', ['pageTitle' => 'Ad Blog',
+                                             'blogs' => $blogs,
+                                             'middleBanners' => $middleBanners,
+                                             'bottomBanners' => $bottomBanners,
+                                             'leftBlogs' => $leftBlogs]);
     }
 
     private function truncateHtml($text, $length = 100, $ending = '...', $exact = false, $considerHtml = true) {

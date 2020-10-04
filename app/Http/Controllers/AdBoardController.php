@@ -78,7 +78,7 @@ class AdBoardController extends Controller {
 
                 $diff = round($diff);
 
-                $lastTenPosts[$key]->ago = $diff . " " . $strTime[$i] . "(s) ago ";
+                $lastTenPosts[$key]->ago = "<strong>" . $diff . " " . $strTime[$i] . "s</strong> ago ";
             }
         }
 
